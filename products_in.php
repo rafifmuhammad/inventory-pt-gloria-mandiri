@@ -1,3 +1,30 @@
+<?php
+include 'function.php';
+
+$products = query("SELECT * FROM tb_barang_masuk", 'id_barang');
+$total_barang = count_all('tb_barang_masuk');
+$jumlah_barang = sum('tb_barang_masuk', 'jumlah_barang');
+
+if (isset($_POST['submit'])) {
+    if (add_products($_POST, 'tb_barang_masuk') > 0) {
+        echo "
+            <script>
+                alert('Barang berhasil ditambahkan');
+                document.location.href = 'products_in.php';
+            </script>
+        ";
+    } else {
+        echo "
+            <script>
+                alert('Barang gagal ditambahkan');
+                document.location.href = 'products_in.php';
+            </script>
+        ";
+    }
+}
+
+?>
+
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -184,13 +211,13 @@
 
                         <!-- Head -->
                         <div class="head">
-                            <h4>Total barang</h4>
+                            <h4>Jumlah barang</h4>
                             <a href="#" class="view"><i class="zmdi zmdi-eye"></i></a>
                         </div>
 
                         <!-- Content -->
                         <div class="content">
-                            <h2>4</h2>
+                            <h2><?php echo $jumlah_barang['sum']; ?></h2>
                         </div>
 
                         <!-- Footer -->
@@ -198,7 +225,7 @@
                             <div class="progess">
                                 <div class="progess-bar" style="width: 100%;"></div>
                             </div>
-                            <p>Total barang</p>
+                            <p>Jumlah barang</p>
                         </div>
 
                     </div>
@@ -216,7 +243,7 @@
 
                         <!-- Content -->
                         <div class="content">
-                            <h2>4</h2>
+                            <h2><?php echo $total_barang['total']; ?></h2>
                         </div>
 
                         <!-- Footer -->
@@ -255,26 +282,21 @@
                                 </thead>
                                 <tbody>
                                     <!-- Query All User -->
-                                    <tr>
-                                        <td>1</td>
-                                        <td>brg01</td>
-                                        <td>usr01</td>
-                                        <td>Galon Pertamax</td>
-                                        <td>3</td>
-                                        <td>03/20/2024</td>
-                                        <td><button class="button button-warning button-sm"><span class="fa fa-pencil-square-o"></span></button></td>
-                                        <td><button class="button button-danger button-sm"><span class="fa fa-trash-o"></span></button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>brg02</td>
-                                        <td>user02</td>
-                                        <td>Selang Air</td>
-                                        <td>3</td>
-                                        <td>03/19/2024</td>
-                                        <td><button class="button button-warning button-sm"><span class="fa fa-pencil-square-o"></span></button></td>
-                                        <td><button class="button button-danger button-sm"><span class="fa fa-trash-o"></span></button></td>
-                                    </tr>
+                                    <?php
+                                    $no = 1;
+                                    foreach ($products as $product) : ?>
+                                        <tr>
+                                            <td><?php echo $no; ?></td>
+                                            <td><?php echo $product['id_barang']; ?></td>
+                                            <td><?php echo $product['id_user']; ?></td>
+                                            <td><?php echo $product['nama_barang']; ?></td>
+                                            <td><?php echo $product['jumlah_barang']; ?></td>
+                                            <td><?php echo $product['tanggal_masuk']; ?></td>
+                                            <td><a href="delete_products_in.php?id_barang=<?php echo $product['id_barang']; ?>" class="button button-warning button-sm"><span class="fa fa-pencil-square"></span></a></td>
+                                            <td><a href="delete_products_in.php?id_barang=<?php echo $product['id_barang']; ?>" onclick="return confirm('Hapus barang masuk?');" class="button button-danger button-sm"><span class="fa fa-trash-o"></span></a></td>
+                                        </tr>
+                                    <?php $no++;
+                                    endforeach; ?>
                                 </tbody>
                             </table>
                             <!-- Modal -->
@@ -287,15 +309,18 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <div class="modal-body">
-                                            <!-- Input a new user -->
-                                            <div class="col-12 mb-15"><input type="text" name="nama_barang" id="nama_barang" class="form-control" placeholder="Nama Barang"></div>
-                                            <div class="col-12 mb-15"><input type="number" name="jumlah_barang" id="jumlah_barang" class="form-control" placeholder="Jumlah Barang"></div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="button button-outline button-danger" data-dismiss="modal">Tutup</button>
-                                            <button type="button" class="button button-primary">Simpan</button>
-                                        </div>
+                                        <form action="" method="post">
+                                            <div class="modal-body">
+                                                <!-- Input a new user -->
+                                                <input type="hidden" name="id_user" id="id_user" value="user_1219">
+                                                <div class="col-12 mb-15"><input type="text" name="nama_barang" id="nama_barang" class="form-control" placeholder="Nama Barang"></div>
+                                                <div class="col-12 mb-15"><input type="number" name="jumlah_barang" id="jumlah_barang" class="form-control" placeholder="Jumlah Barang"></div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="button button-outline button-danger" data-dismiss="modal">Tutup</button>
+                                                <button type="submit" name="submit" class="button button-primary">Simpan</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

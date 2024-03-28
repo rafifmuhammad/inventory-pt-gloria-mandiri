@@ -317,8 +317,8 @@ if (isset($_POST['submit'])) {
                                             <td><?php echo $user['role'] ?></td>
                                             <td><?php echo $user['password'] ?></td>
                                             <td><?php echo $user['created_at'] ?></td>
-                                            <td><button class="button button-sm button-warning"><span class="fa fa-pencil-square-o"></span></button></td>
-                                            <td><button class="button button-sm button-danger"><span class="fa fa-trash-o"></span></button></td>
+                                            <td><a class="button button-warning button-sm" href="delete_user.php?id_user=<?php echo $user['id_user']; ?>"><span class="fa fa-pencil-square-o"></span></a></td>
+                                            <td><a class="button button-danger button-sm" onclick="return confirm('Hapus pengguna?');" href="delete_user.php?id_user=<?php echo $user['id_user']; ?>"><span class="fa fa-trash"></span></a></td>
                                         </tr>
                                     <?php $i++;
                                     endforeach; ?>
