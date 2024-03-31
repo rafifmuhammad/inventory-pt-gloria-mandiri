@@ -35,6 +35,91 @@ function add_user($data)
     return mysqli_affected_rows($conn);
 }
 
+function get_single_user($id_user)
+{
+    global $conn;
+
+    $query = "SELECT * FROM tb_user WHERE id_user = '$id_user'";
+    $result = mysqli_query($conn, $query);
+
+    return mysqli_fetch_assoc($result);
+}
+
+function update_user($data, $id_user)
+{
+    global $conn;
+
+    $nama_lengkap = htmlspecialchars($data['nama_lengkap']);
+    $username = htmlspecialchars($data['username']);
+    $email = htmlspecialchars($data['email']);
+    $no_hp = htmlspecialchars($data['no_hp']);
+    $role = htmlspecialchars($data['role']);
+    $password = htmlspecialchars($data['password']);
+    $created_at = htmlspecialchars($data['created_at']);
+
+    $query = "UPDATE tb_user SET 
+        id_user = '$id_user',
+        username = '$username',
+        email = '$email',
+        no_hp = '$no_hp',
+        role = '$role',
+        password = '$password',
+        created_at = '$created_at',
+        nama_lengkap = '$nama_lengkap'
+            WHERE id_user = '$id_user' 
+    ";
+
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+
+function update_product_in($data, $id_barang)
+{
+    global $conn;
+
+    $id_user = $data['id_user'];
+    $nama_barang = htmlspecialchars($data['nama_barang']);
+    $jumlah_barang = htmlspecialchars($data['jumlah_barang']);
+    $tanggal_masuk = htmlspecialchars($data['tanggal_masuk']);
+
+    $query = "UPDATE tb_barang_masuk SET 
+        id_barang = '$id_barang', 
+        id_user = '$id_user',
+        nama_barang = '$nama_barang',
+        jumlah_barang = '$jumlah_barang',
+        tanggal_masuk = '$tanggal_masuk' 
+        WHERE id_barang = '$id_barang'
+    ";
+
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+
+function update_product_out($data, $id_barang)
+{
+    global $conn;
+
+    $id_user = $data['id_user'];
+    $nama_barang = htmlspecialchars($data['nama_barang']);
+    $jumlah_barang = htmlspecialchars($data['jumlah_barang']);
+    $tanggal_keluar = htmlspecialchars($data['tanggal_keluar']);
+
+    $query = "UPDATE tb_barang_keluar SET 
+        id_barang = '$id_barang', 
+        id_user = '$id_user',
+        nama_barang = '$nama_barang',
+        jumlah_barang = '$jumlah_barang',
+        tanggal_keluar = '$tanggal_keluar'
+        WHERE id_barang = '$id_barang'
+    ";
+
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+
 function add_products($data, $table)
 {
     global $conn;
@@ -43,12 +128,22 @@ function add_products($data, $table)
     $id_user = $data['id_user'];
     $nama_barang = $data['nama_barang'];
     $jumlah_barang = $data['jumlah_barang'];
-    $tanggal_masuk = date('Y/m/d');
+    $tanggal = date('Y/m/d');
 
-    $query = "INSERT INTO $table VALUES ('$id_product', '$id_user', '$nama_barang', '$jumlah_barang', '$tanggal_masuk')";
+    $query = "INSERT INTO $table VALUES ('$id_product', '$id_user', '$nama_barang', '$jumlah_barang', '$tanggal')";
     mysqli_query($conn, $query);
 
     return mysqli_affected_rows($conn);
+}
+
+function get_single_product($table, $attr, $id_barang)
+{
+    global $conn;
+
+    $query = "SELECT $attr FROM $table WHERE id_barang = '$id_barang'";
+    $result = mysqli_query($conn, $query);
+
+    return mysqli_fetch_assoc($result);
 }
 
 function delete($table, $where, $id)

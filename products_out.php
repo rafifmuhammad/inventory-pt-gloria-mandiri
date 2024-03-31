@@ -1,3 +1,31 @@
+<?php
+include 'function.php';
+
+$products = query("SELECT * FROM tb_barang_keluar");
+$products_in = query("SELECT * FROM tb_barang_masuk");
+$total_products = count_all('tb_barang_keluar');
+$amount_of_products = sum('tb_barang_keluar', 'jumlah_barang');
+
+if (isset($_POST['submit'])) {
+    if (add_products($_POST, 'tb_barang_keluar') > 0) {
+        echo "
+            <script>
+                alert('Data berhasil ditambahkan');
+                document.location.href = 'products_out.php';
+            </script>
+        ";
+    } else {
+        echo "
+            <script>
+                alert('Data gagal ditambahkan');
+                document.location.href = 'products_out.php';
+            </script>
+        ";
+    }
+}
+
+?>
+
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -183,13 +211,13 @@
 
                         <!-- Head -->
                         <div class="head">
-                            <h4>Total barang</h4>
+                            <h4>Jumlah barang</h4>
                             <a href="#" class="view"><i class="zmdi zmdi-eye"></i></a>
                         </div>
 
                         <!-- Content -->
                         <div class="content">
-                            <h2>4</h2>
+                            <h2><?php echo $amount_of_products['sum']; ?></h2>
                         </div>
 
                         <!-- Footer -->
@@ -215,7 +243,7 @@
 
                         <!-- Content -->
                         <div class="content">
-                            <h2>4</h2>
+                            <h2><?php echo $total_products['total']; ?></h2>
                         </div>
 
                         <!-- Footer -->
@@ -252,27 +280,21 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- Query All User -->
-                                    <tr>
-                                        <td>1</td>
-                                        <td>brg01</td>
-                                        <td>usr01</td>
-                                        <td>Galon Pertamax</td>
-                                        <td>3</td>
-                                        <td>03/20/2024</td>
-                                        <td><button class="button button-warning button-sm"><span class="fa fa-pencil-square-o"></span></button></td>
-                                        <td><button class="button button-danger button-sm"><span class="fa fa-trash-o"></span></button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>brg02</td>
-                                        <td>user02</td>
-                                        <td>Selang Air</td>
-                                        <td>3</td>
-                                        <td>03/19/2024</td>
-                                        <td><button class="button button-warning button-sm"><span class="fa fa-pencil-square-o"></span></button></td>
-                                        <td><button class="button button-danger button-sm"><span class="fa fa-trash-o"></span></button></td>
-                                    </tr>
+                                    <?php
+                                    $i = 1;
+                                    foreach ($products as $product) : ?>
+                                        <tr>
+                                            <td><?php echo $i; ?></td>
+                                            <td><?php echo $product['id_barang']; ?></td>
+                                            <td><?php echo $product['id_user']; ?></td>
+                                            <td><?php echo $product['nama_barang']; ?></td>
+                                            <td><?php echo $product['jumlah_barang']; ?></td>
+                                            <td><?php echo $product['tanggal_keluar']; ?></td>
+                                            <td><a class="button button-warning button-sm" href="edit_products_out.php?id_barang=<?php echo $product['id_barang']; ?>"><span class="fa fa-edit"></span></a></td>
+                                            <td><a class="button button-danger button-sm" onclick="return confirm('Hapus barang?');" href="delete_products_out.php?id_barang=<?php echo $product['id_barang']; ?>"><span class="fa fa-trash-o"></span></a></td>
+                                        </tr>
+                                    <?php $i++;
+                                    endforeach; ?>
                                 </tbody>
                             </table>
                             <!-- Modal -->
@@ -285,15 +307,26 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <div class="modal-body">
-                                            <!-- Input a new user -->
-                                            <div class="col-12 mb-15"><input type="text" name="nama_barang" id="nama_barang" class="form-control" placeholder="Nama Barang"></div>
-                                            <div class="col-12 mb-15"><input type="number" name="jumlah_barang" id="jumlah_barang" class="form-control" placeholder="Jumlah Barang"></div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="button button-outline button-danger" data-dismiss="modal">Tutup</button>
-                                            <button type="button" class="button button-primary">Simpan</button>
-                                        </div>
+                                        <form action="" method="post">
+                                            <input type="hidden" name="id_user" id="id_user" value="user_1219">
+                                            <div class="modal-body">
+                                                <div class="col-12 mb-15">
+                                                    <select class="form-control" name="nama_barang" id="nama_barang">
+                                                        <option value="Nama Barang" disabled selected>Pilih nama barang</option>
+                                                        <?php foreach ($products_in as $product_in) :  ?>
+                                                            <option value="<?php echo $product_in['nama_barang']; ?>">
+                                                                <?php echo $product_in['nama_barang']; ?>
+                                                            </option>
+                                                        <?php endforeach; ?>
+                                                    </select>
+                                                </div>
+                                                <div class="col-12 mb-15"><input type="number" name="jumlah_barang" id="jumlah_barang" class="form-control" placeholder="Jumlah Barang"></div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="button button-outline button-danger" data-dismiss="modal">Tutup</button>
+                                                <button type="submit" name="submit" class="button button-primary">Simpan</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

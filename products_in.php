@@ -292,7 +292,7 @@ if (isset($_POST['submit'])) {
                                             <td><?php echo $product['nama_barang']; ?></td>
                                             <td><?php echo $product['jumlah_barang']; ?></td>
                                             <td><?php echo $product['tanggal_masuk']; ?></td>
-                                            <td><a href="delete_products_in.php?id_barang=<?php echo $product['id_barang']; ?>" class="button button-warning button-sm"><span class="fa fa-pencil-square"></span></a></td>
+                                            <td><a href="edit_products_in.php?id_barang=<?php echo $product['id_barang']; ?>" class="button button-warning button-sm"><span class="fa fa-pencil-square"></span></a></td>
                                             <td><a href="delete_products_in.php?id_barang=<?php echo $product['id_barang']; ?>" onclick="return confirm('Hapus barang masuk?');" class="button button-danger button-sm"><span class="fa fa-trash-o"></span></a></td>
                                         </tr>
                                     <?php $no++;
