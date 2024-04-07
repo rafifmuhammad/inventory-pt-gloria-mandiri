@@ -131,31 +131,17 @@ if (isset($_POST['submit'])) {
                                                     <img src="assets/images/avatar/avatar-1.jpg" alt="">
                                                     <span class="status"></span>
                                                 </span>
-                                                <span class="name">Madison Howard</span>
+                                                <span class="name"><?php echo $_SESSION['nama_lengkap']; ?></span>
                                             </span>
                                         </a>
 
                                         <!-- Dropdown -->
                                         <div class="adomx-dropdown-menu dropdown-menu-user">
                                             <div class="head">
-                                                <h5 class="name"><a href="#">Madison Howard</a></h5>
-                                                <a class="mail" href="#">mailnam@mail.com</a>
+                                                <h5 class="name"><a href="#"><?php echo $_SESSION['nama_lengkap']; ?></a></h5>
+                                                <a class="mail" href="#"><?php echo $_SESSION['email']; ?></a>
                                             </div>
-                                            <div class="body">
-                                                <ul>
-                                                    <li><a href="#"><i class="zmdi zmdi-account"></i>Profile</a></li>
-                                                    <li><a href="#"><i class="zmdi zmdi-email-open"></i>Inbox</a></li>
-                                                    <li><a href="#"><i class="zmdi zmdi-wallpaper"></i>Activity</a></li>
-                                                </ul>
-                                                <ul>
-                                                    <li><a href="#"><i class="zmdi zmdi-settings"></i>Setting</a></li>
-                                                    <li><a href="#"><i class="zmdi zmdi-lock-open"></i>Sing out</a></li>
-                                                </ul>
-                                                <ul>
-                                                    <li><a href="#"><i class="zmdi zmdi-paypal"></i>Payment</a></li>
-                                                    <li><a href="#"><i class="zmdi zmdi-google-pages"></i>Invoice</a></li>
-                                                </ul>
-                                            </div>
+
                                         </div>
                                     </li>
                                 </ul>
@@ -179,7 +165,7 @@ if (isset($_POST['submit'])) {
                         <li><a href="user_management.php"><i class="fa fa-user-o"></i> <span>Manajemen Pengguna</span></a></li>
                         <li><a href="products_in.php"><i class="fa fa-cart-plus"></i> <span>Kelola Barang Masuk</span></a></li>
                         <li><a href="products_out.php"><i class="fa fa-cart-arrow-down"></i> <span>Kelola Barang Keluar</span></a></li>
-                        <li><a href="#"><i class="fa fa-sign-out"></i> <span>Keluar</span></a></li>
+                        <li><a href="logout.php"><i class="fa fa-sign-out"></i> <span>Keluar</span></a></li>
                     </ul>
                 </nav>
 

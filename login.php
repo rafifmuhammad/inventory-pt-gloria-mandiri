@@ -22,6 +22,9 @@ if (isset($_POST['submit'])) {
         if (password_verify($password, $row['password'])) {
             // Set session
             $_SESSION['login'] = true;
+            $_SESSION['nama_lengkap'] = $row['nama_lengkap'];
+            $_SESSION['email'] = $row['email'];
+            $_SESSION['role'] = $row['role'];
 
             header('Location: index.php');
             exit;
