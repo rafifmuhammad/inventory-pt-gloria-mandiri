@@ -1,10 +1,48 @@
+<?php
+session_start();
+include 'function.php';
+
+if (isset($_SESSION['login'])) {
+    header("Location: index.php");
+    exit;
+}
+
+if (isset($_POST['submit'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $result = mysqli_query($conn, "SELECT * FROM tb_user WHERE username = '$username'");
+
+    // Check username
+    if (mysqli_num_rows($result) == 1) {
+
+        // Check password
+        $row = mysqli_fetch_assoc($result);
+
+        if (password_verify($password, $row['password'])) {
+            // Set session
+            $_SESSION['login'] = true;
+
+            header('Location: index.php');
+            exit;
+        } else {
+            echo "
+                <script>
+                    alert('Username atau password salah!');
+                </script>
+            ";
+        }
+    }
+}
+?>
+
 <!doctype html>
 <html class="no-js" lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Adomx - Responsive Bootstrap 4 Admin Template</title>
+    <title>Inventaris App - Login</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -56,17 +94,11 @@
                             </div>
 
                             <div class="login-register-form">
-                                <form action="#">
+                                <form action="" method="post">
                                     <div class="row">
-                                        <div class="col-12 mb-20"><input class="form-control" name="username" type="text" placeholder="Username atau email"></div>
+                                        <div class="col-12 mb-20"><input class="form-control" name="username" type="text" placeholder="Username"></div>
                                         <div class="col-12 mb-20"><input class="form-control" name="password" type="password" placeholder="Password"></div>
-                                        <div class="col-12 mb-20"><label for="remember" class="adomx-checkbox-2"><input id="remember" type="checkbox"><i class="icon"></i>Remember.</label></div>
-                                        <div class="col-12">
-                                            <div class="row justify-content-between">
-                                                <div class="col-auto mb-15"><a href="#">Forgot Password?</a></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 mt-10"><button class="button button-primary button-outline">sign in</button></div>
+                                        <div class="col-12 mt-10"><button name="submit" type="submit" class="button button-primary button-outline">sign in</button></div>
                                     </div>
                                 </form>
                             </div>

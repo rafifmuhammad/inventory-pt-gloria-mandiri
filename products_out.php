@@ -1,5 +1,11 @@
 <?php
+session_start();
 include 'function.php';
+
+if (!isset($_SESSION['login'])) {
+    header("Location: login.php");
+    exit;
+}
 
 $products = query("SELECT * FROM tb_barang_keluar");
 $products_in = query("SELECT * FROM tb_barang_masuk");
@@ -266,7 +272,7 @@ if (isset($_POST['submit'])) {
                         </div>
                         <div class="box-body">
                             <button type="button" data-toggle="modal" data-target="#exampleModal" class="button button-outline button-primary"><span>Tambah Data Barang</span></button>
-                            <button class="button button-secondary"><span><i class="ti-printer"></i>Cetak Barang Keluar</span></button>
+                            <a class="button button-secondary" href="products_out_report.php"><span class="ti-printer"></span> Cetak barang keluar</a>
                             <table class="table table-bordered data-table data-table-default">
                                 <thead>
                                     <tr>

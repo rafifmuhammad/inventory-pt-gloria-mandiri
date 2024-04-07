@@ -20,13 +20,25 @@ function add_user($data)
     global $conn;
 
     $id = "user_" . rand();
-    $username = htmlspecialchars($data['username']);
+    $username = htmlspecialchars(strtolower(stripslashes($data['username'])));
     $nama_lengkap = htmlspecialchars($data['nama_lengkap']);
     $email = htmlspecialchars($data['email']);
     $no_hp = htmlspecialchars($data['no_hp']);
     $role = htmlspecialchars($data['role']);
-    $password = htmlspecialchars($data['password']);
+    $password = htmlspecialchars(mysqli_real_escape_string($conn, $data['password']));
     $created_at = date('Y/m/d');
+
+    // Check username 
+    $result = mysqli_query($conn, "SELECT username FROM tb_user WHERE username = '$username'");
+
+    if (mysqli_fetch_assoc($result)) {
+        echo "<script>alert('username sudah terdaftar!');</script>";
+
+        return false;
+    }
+
+    // Passsword encryption
+    $password = password_hash($password, PASSWORD_DEFAULT);
 
     $query = "INSERT INTO tb_user VALUES ('$id', '$username', '$email', '$no_hp', '$role', '$password', '$created_at', '$nama_lengkap')";
 

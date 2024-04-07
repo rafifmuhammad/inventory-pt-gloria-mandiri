@@ -1,5 +1,11 @@
 <?php
+session_start();
 include('function.php');
+
+if (!isset($_SESSION['login'])) {
+    header('Location: login.php');
+    exit;
+}
 
 $users = query("SELECT * FROM tb_user");
 $count_admin = count_total('Admin');
