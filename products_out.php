@@ -300,7 +300,7 @@ if (isset($_POST['submit'])) {
                                             </button>
                                         </div>
                                         <form action="" method="post">
-                                            <input type="hidden" name="id_user" id="id_user" value="user_1219">
+                                            <input type="hidden" name="id_user" id="id_user" value="<?php echo $_SESSION['id_user']; ?>">
                                             <div class="modal-body">
                                                 <div class="col-12 mb-15">
                                                     <select class="form-control" name="nama_barang" id="nama_barang">

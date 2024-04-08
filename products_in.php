@@ -304,7 +304,7 @@ if (isset($_POST['submit'])) {
                                         <form action="" method="post">
                                             <div class="modal-body">
                                                 <!-- Input a new user -->
-                                                <input type="hidden" name="id_user" id="id_user" value="user_1219">
+                                                <input type="hidden" name="id_user" id="id_user" value="<?php echo $_SESSION['id_user']; ?>">
                                                 <div class="col-12 mb-15"><input type="text" name="nama_barang" id="nama_barang" class="form-control" placeholder="Nama Barang"></div>
                                                 <div class="col-12 mb-15"><input type="number" name="jumlah_barang" id="jumlah_barang" class="form-control" placeholder="Jumlah Barang"></div>
                                             </div>
