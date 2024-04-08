@@ -19,7 +19,7 @@ function add_user($data)
 {
     global $conn;
 
-    $id = "user_" . rand();
+    $id = uniqid();
     $username = htmlspecialchars(strtolower(stripslashes($data['username'])));
     $nama_lengkap = htmlspecialchars($data['nama_lengkap']);
     $email = htmlspecialchars($data['email']);
@@ -136,7 +136,7 @@ function add_products($data, $table)
 {
     global $conn;
 
-    $id_product = 'barang_' + rand();
+    $id_product = uniqid();
     $id_user = $data['id_user'];
     $nama_barang = $data['nama_barang'];
     $jumlah_barang = $data['jumlah_barang'];
