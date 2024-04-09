@@ -9,7 +9,7 @@ if (!isset($_SESSION['login'])) {
 
 $users = query("SELECT * FROM tb_user");
 $count_admin = count_total('Admin');
-$count_user = count_total('User');
+$count_user = count_all('tb_user');
 $count_supplier = count_total('Supplier');
 
 if (isset($_POST['submit'])) {

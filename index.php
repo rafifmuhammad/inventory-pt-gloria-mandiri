@@ -1,10 +1,16 @@
 <?php
 session_start();
+include 'function.php';
 
 if (!isset($_SESSION['login'])) {
     header("Location: login.php");
     exit;
 }
+
+$count_user = count_all('tb_user');
+$count_supplier = count_total('Supplier');
+$count_products_in = count_all('tb_barang_masuk');
+$count_products_out = count_all('tb_barang_keluar');
 ?>
 
 <!doctype html>
@@ -156,7 +162,7 @@ if (!isset($_SESSION['login'])) {
 
                         <!-- Content -->
                         <div class="content">
-                            <h2>4</h2>
+                            <h2><?php echo $count_user['total']; ?></h2>
                         </div>
 
                         <!-- Footer -->
@@ -182,7 +188,7 @@ if (!isset($_SESSION['login'])) {
 
                         <!-- Content -->
                         <div class="content">
-                            <h2>4</h2>
+                            <h2><?php echo $count_supplier['total']; ?></h2>
                         </div>
 
                         <!-- Footer -->
@@ -208,7 +214,7 @@ if (!isset($_SESSION['login'])) {
 
                         <!-- Content -->
                         <div class="content">
-                            <h2>16</h2>
+                            <h2><?php echo $count_products_in['total']; ?></h2>
                         </div>
 
                         <!-- Footer -->
@@ -234,7 +240,7 @@ if (!isset($_SESSION['login'])) {
 
                         <!-- Content -->
                         <div class="content">
-                            <h2>4</h2>
+                            <h2><?php echo $count_products_out['total']; ?></h2>
                         </div>
 
                         <!-- Footer -->

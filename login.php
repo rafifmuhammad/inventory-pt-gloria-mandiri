@@ -25,6 +25,7 @@ if (isset($_POST['submit'])) {
             $_SESSION['nama_lengkap'] = $row['nama_lengkap'];
             $_SESSION['email'] = $row['email'];
             $_SESSION['role'] = $row['role'];
+            $_SESSION['id_user'] = $row['id_user'];
 
             header('Location: index.php');
             exit;
