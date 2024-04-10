@@ -8,3 +8,5 @@ http://8.222.135.138/inventory-pt-gloria-mandiri/login.php
 username : admin\
 password : admin\
 role : admin
+
+
