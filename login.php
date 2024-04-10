@@ -51,7 +51,7 @@ if (isset($_POST['submit'])) {
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="./images/small-logo.png">
 
     <!-- CSS
 	============================================ -->
@@ -76,7 +76,117 @@ if (isset($_POST['submit'])) {
 
     <!-- Custom Style CSS Only For Demo Purpose -->
     <link id="cus-style" rel="stylesheet" href="assets/css/style-primary.css">
+    <style>
+        .login-register-wrap {
+            padding: 0 15px;
+        }
 
+        /*Login & Resister BG*/
+        .login-register-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5),
+                    rgba(0, 0, 0, 0.5)),
+                url('./images/login-register-bg.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+            min-height: 100vh;
+            height: 100%;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+
+        .login-register-bg .content {
+            display: none;
+            max-width: 420px;
+            padding: 100px 30px;
+        }
+
+        .login-register-bg .content h1 {
+            font-weight: 300;
+            line-height: 1;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .login-register-bg .content p {
+            margin-bottom: 0;
+            color: #ffffff;
+        }
+
+        @media only screen and (min-width: 768px) and (max-width: 991px),
+        only screen and (max-width: 767px) {
+            .login-register-bg {
+                min-height: auto;
+            }
+
+            .login-register-bg .content {
+                display: block;
+            }
+        }
+
+        @media only screen and (max-width: 767px) {
+            .login-register-bg .content {
+                padding-top: 50px;
+                padding-bottom: 50px;
+            }
+
+            .login-register-bg .content h1 {
+                font-size: 30px;
+            }
+        }
+
+        /*Login & Resister Form Wrapper*/
+        .login-register-form-wrap {
+            max-width: 420px;
+            padding: 50px 15px;
+        }
+
+        .login-register-form-wrap .content h1 {
+            font-weight: 300;
+            line-height: 1;
+            margin-bottom: 15px;
+        }
+
+        .login-register-form-wrap .content p {
+            margin-bottom: 30px;
+        }
+
+        @media only screen and (min-width: 768px) and (max-width: 991px),
+        only screen and (max-width: 767px) {
+            .login-register-form-wrap .content {
+                display: none;
+            }
+        }
+
+        @media only screen and (max-width: 767px) {
+            .login-register-form-wrap .content h1 {
+                font-size: 30px;
+            }
+        }
+
+        /*Login & Resister Form*/
+        .login-register-form {
+            max-width: 370px;
+        }
+
+        .login-register-form a {
+            color: #428bfa;
+        }
+
+        .login-register-form a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body>

@@ -41,7 +41,7 @@ if (isset($_POST['submit'])) {
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="./images/small-logo.png">
 
     <!-- CSS
 	============================================ -->
@@ -82,7 +82,7 @@ if (isset($_POST['submit'])) {
                     <!-- Header Logo (Header Left) Start -->
                     <div class="header-logo col-auto">
                         <a href="index.php">
-                            <img src="assets/images/logo/logo.png" alt="">
+                            <img src="./images/logo.png" alt="logo">
                             <img src="assets/images/logo/logo-light.png" class="logo-light" alt="">
                         </a>
                     </div><!-- Header Logo (Header Left) End -->
@@ -98,23 +98,7 @@ if (isset($_POST['submit'])) {
                                     <!--Side Header Toggle-->
                                     <div class="col-auto"><button class="side-header-toggle"><i class="zmdi zmdi-menu"></i></button></div>
 
-                                    <!--Header Search-->
-                                    <div class="col-auto">
 
-                                        <div class="header-search">
-
-                                            <button class="header-search-open d-block d-xl-none"><i class="zmdi zmdi-search"></i></button>
-
-                                            <div class="header-search-form">
-                                                <form action="#">
-                                                    <input type="text" placeholder="Search Here">
-                                                    <button><i class="zmdi zmdi-search"></i></button>
-                                                </form>
-                                                <button class="header-search-close d-block d-xl-none"><i class="zmdi zmdi-close"></i></button>
-                                            </div>
-
-                                        </div>
-                                    </div>
 
                                 </div>
                             </div><!-- Side Header Toggle & Search End -->

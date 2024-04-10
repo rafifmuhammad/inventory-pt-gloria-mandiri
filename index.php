@@ -24,7 +24,7 @@ $count_products_out = count_all('tb_barang_keluar');
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="./images/small-logo.png">
 
     <!-- CSS
 	============================================ -->
@@ -65,7 +65,7 @@ $count_products_out = count_all('tb_barang_keluar');
                     <!-- Header Logo (Header Left) Start -->
                     <div class="header-logo col-auto">
                         <a href="index.php">
-                            <img src="assets/images/logo/logo.png" alt="">
+                            <img src="./images/logo.png" alt="logo">
                             <img src="assets/images/logo/logo-light.png" class="logo-light" alt="">
                         </a>
                     </div><!-- Header Logo (Header Left) End -->
