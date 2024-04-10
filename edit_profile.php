@@ -237,7 +237,7 @@ if (isset($_POST['submit'])) {
             <div class="container-fluid">
 
                 <div class="footer-copyright text-center">
-                    <p class="text-body-light">2019 &copy; <a href="https://themeforest.net/user/codecarnival">Codecarnival</a></p>
+                    <p class="text-body-light">2024 &copy; <a href="">HC333</a></p>
                 </div>
 
             </div>
