@@ -30,6 +30,11 @@ if (isset($_POST['submit'])) {
     }
 }
 
+if (isset($_POST['find'])) {
+    $product = $_POST['search'];
+    $products = query("SELECT * FROM tb_barang_keluar WHERE nama_barang LIKE '%$product%'");
+}
+
 ?>
 
 <!doctype html>
@@ -236,8 +241,26 @@ if (isset($_POST['submit'])) {
                             <h3 class="title">Barang Keluar</h3>
                         </div>
                         <div class="box-body">
-                            <button type="button" data-toggle="modal" data-target="#exampleModal" class="button button-outline button-primary"><span>Tambah Data Barang</span></button>
-                            <a class="button button-secondary" href="products_out_report.php"><span class="ti-printer"></span> Cetak barang keluar</a>
+                            <div class="row justify-content-between">
+                                <div>
+                                    <button type="button" data-toggle="modal" data-target="#exampleModal" class="button button-outline button-primary"><span>Tambah Data Barang</span></button>
+                                    <a href="products_out_report.php" class="button button-secondary"><span class="ti-printer"></span> Cetak barang keluar</a>
+                                </div>
+
+                                <!-- Search products -->
+                                <div>
+                                    <form action="" method="post">
+                                        <div class="row mr-15">
+                                            <div>
+                                                <input type="text" name="search" id="search" class="form-control" placeholder="Cari barang">
+                                            </div>
+                                            <button class="button button-secondary mt-5 ml-5 mb-5" type="submit" name="find">Search</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- end search products -->
+                            </div>
+
                             <table class="table table-bordered data-table data-table-default">
                                 <thead>
                                     <tr>
