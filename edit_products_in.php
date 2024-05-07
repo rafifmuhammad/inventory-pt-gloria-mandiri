@@ -146,9 +146,9 @@ if (isset($_POST['submit'])) {
                 <nav class="side-header-menu" id="side-header-menu">
                     <ul>
                         <li><a href="index.php"><i class="ti-home"></i> <span>Dashboard</span></a></li>
-                        <li><a href="user_management.php"><i class="fa fa-user-o"></i> <span>Manajemen Pengguna</span></a></li>
+                        <?php echo $_SESSION['role'] == 'Admin' ? '<li><a href="user_management.php"><i class="fa fa-user-o"></i> <span>Manajemen Pengguna</span></a></li>' : ""; ?>
                         <li><a href="products_in.php"><i class="fa fa-cart-plus"></i> <span>Kelola Barang Masuk</span></a></li>
-                        <li><a href="products_out.php"><i class="fa fa-cart-arrow-down"></i> <span>Kelola Barang Keluar</span></a></li>
+                        <?php echo $_SESSION['role'] == 'Admin' || $_SESSION['role'] == 'User' ? '<li><a href="products_out.php"><i class="fa fa-cart-arrow-down"></i> <span>Kelola Barang Keluar</span></a></li>' : ''; ?>
                         <li><a href="logout.php"><i class="fa fa-sign-out"></i> <span>Keluar</span></a></li>
                     </ul>
                 </nav>

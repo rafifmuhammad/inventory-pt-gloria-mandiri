@@ -152,9 +152,9 @@ if (isset($_POST['find'])) {
                 <nav class="side-header-menu" id="side-header-menu">
                     <ul>
                         <li><a href="index.php"><i class="ti-home"></i> <span>Dashboard</span></a></li>
-                        <li><a href="user_management.php"><i class="fa fa-user-o"></i> <span>Manajemen Pengguna</span></a></li>
+                        <?php echo $_SESSION['role'] == 'Admin' ? '<li><a href="user_management.php"><i class="fa fa-user-o"></i> <span>Manajemen Pengguna</span></a></li>' : ""; ?>
                         <li><a href="products_in.php"><i class="fa fa-cart-plus"></i> <span>Kelola Barang Masuk</span></a></li>
-                        <li><a href="products_out.php"><i class="fa fa-cart-arrow-down"></i> <span>Kelola Barang Keluar</span></a></li>
+                        <?php echo $_SESSION['role'] == 'Admin' || $_SESSION['role'] == 'User' ? '<li><a href="products_out.php"><i class="fa fa-cart-arrow-down"></i> <span>Kelola Barang Keluar</span></a></li>' : ''; ?>
                         <li><a href="logout.php"><i class="fa fa-sign-out"></i> <span>Keluar</span></a></li>
                     </ul>
                 </nav>
@@ -243,7 +243,7 @@ if (isset($_POST['find'])) {
                         <div class="box-body">
                             <div class="row justify-content-between">
                                 <div>
-                                    <button type="button" data-toggle="modal" data-target="#exampleModal" class="button button-outline button-primary"><span>Tambah Data Barang</span></button>
+                                    <?php echo $_SESSION['role'] == 'Admin' || $_SESSION['role'] == 'Supplier' ? '<button type="button" data-toggle="modal" data-target="#exampleModal" class="button button-outline button-primary"><span>Tambah Data Barang</span></button>' : ''; ?>
                                     <a href="products_out_report.php" class="button button-secondary"><span class="ti-printer"></span> Cetak barang keluar</a>
                                 </div>
 
