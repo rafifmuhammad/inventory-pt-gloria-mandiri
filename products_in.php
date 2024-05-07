@@ -7,7 +7,14 @@ if (!isset($_SESSION['login'])) {
     exit;
 }
 
-$products = query("SELECT * FROM tb_barang_masuk", 'id_barang');
+$idUser = $_SESSION['id_user'];
+
+if ($_SESSION['role'] == 'Supplier') {
+    $products = query("SELECT * FROM tb_barang_masuk WHERE id_user = '$idUser'");
+} else {
+    $products = query("SELECT * FROM tb_barang_masuk");
+}
+
 $total_barang = count_all('tb_barang_masuk');
 $jumlah_barang = sum('tb_barang_masuk', 'jumlah_barang');
 
